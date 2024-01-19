@@ -32,9 +32,12 @@ const useGames = (gameQuery: GameQuery) =>
     getNextPageParam: (lastPage) => {
       // Assuming 'next' contains the page number for the next page.
       // You may need to adjust this logic based on how your API formats the 'next' URL.
-      const nextPage = lastPage.next ? parseInt(lastPage.next.split('page=')[1]) : undefined;
+      const nextPage = lastPage.next
+        ? parseInt(lastPage.next.split("page=")[1])
+        : undefined;
       return nextPage;
-    }
+    },
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours
   });
 
 export default useGames;
