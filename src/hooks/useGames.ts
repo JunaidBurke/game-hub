@@ -1,6 +1,7 @@
-import APIClient, { FetchResponse } from "../services/api-client"; // Adjust the import path as necessary
-import { GameQuery } from "../App"; // Adjust the import path as necessary
 import { useInfiniteQuery } from "@tanstack/react-query";
+import ms from "ms";
+import { GameQuery } from "../App"; // Adjust the import path as necessary
+import APIClient, { FetchResponse } from "../services/api-client"; // Adjust the import path as necessary
 import { Platform } from "./usePlatforms"; // Adjust the import path as necessary
 
 const apiClient = new APIClient<Game>("/games");
@@ -37,7 +38,7 @@ const useGames = (gameQuery: GameQuery) =>
         : undefined;
       return nextPage;
     },
-    staleTime: 1000 * 60 * 60 * 24, // 24 hours
+    staleTime: ms("24h"),
   });
 
 export default useGames;
